@@ -1,0 +1,6 @@
+{# begin {templatelocation} #}
+
+      <dt>{lang_replfilename}</dt>
+      <dd><input type="file" name="newfile" size="48" maxlength="200"{xhtml}></dd>
+
+{# end {templatelocation} #}

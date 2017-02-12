@@ -1,0 +1,9 @@
+{# begin {templatelocation} #}
+
+<div class="mgframe_none">
+  {media_link_start}
+    <img src="{media_thumbnail}" alt="{media_tag}" title="{media_tag}" class="image" {xhtml}>
+  {media_link_end}
+</div>
+
+{# end {templatelocation} #}

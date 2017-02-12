@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+    <input type="submit" value="{lang_preview}" name="mode" class="submit"{xhtml}>
+
+{# end {templatelocation} #}

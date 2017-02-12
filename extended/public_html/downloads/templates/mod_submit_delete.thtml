@@ -1,0 +1,5 @@
+{# begin {templatelocation} #}
+
+    <input type="submit" name="mode" value="{lang_delete}" class="button" onclick="return confirm('{lang_confirm_delete}');"{xhtml}>
+
+{# end {templatelocation} #}

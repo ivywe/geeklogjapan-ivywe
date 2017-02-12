@@ -1,0 +1,4 @@
+{# begin {templatelocation} #}
+    <input type="submit" name="mode" value="{lang_delete}" class="button" onclick="if (confirm('{lang_confirm_delete}')) {this.form.op.value='delCat';return true}; return false"{xhtml}>
+
+{# end {templatelocation} #}

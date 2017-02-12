@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>UserBox | Geeklogドキュメント</title>
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/docstyle.css" title="Dev Stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../../../../docs/japanese/docstyle.css" title="Dev Stylesheet">
+</head>
+<!-- admin/plugins/userbox/docs/japanese/autotags.html 20160929 -->
+<body>
+<p><a href="http://www.geeklog.jp" style="background:transparent"><img src="../../../../../docs/images/newlogo.gif" alt="Geeklog Documentation" width="243" height="90"></a></p>
+<div class="menu">
+<a href="../../../../../docs/japanese/index.html">Geeklogドキュメント</a>
+- <a href="index.html">UserBox プラグイン</a>
+- 設定</div>
+<p>
+<a href="../../../../../">トップページ</a>
+ <a href="../../../../../admin/plugins/userbox/">管理画面</a>
+</p>
+<h1><a href="index.html">UserBox プラグイン</h1>
+
+
+<h2><a name="autotags">自動タグ</a>(2016/08/19 update)</h2>
+<table>
+<tr><th style="width:25%">書式</th>
+    <th style="width:75%">説明</th>
+</tr>
+<tbody>
+<tr>
+<td>[userbox:count ]<br /><br />
+category_id:　category_code:<br />
+mode:<br />
+permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
+numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。<br />
+</td>
+<td>
+データ件数<br />
+例１：[userbox:count]<br />
+例２：[userbox:count category_id:1]<br />
+例３：[userbox:count category_code:japan]<br />
+例４：[userbox:count category_code:japan|america] カテゴリコードがjapan またはamerica<br />
+例５：[userbox:count category_code:japan|groupA mode:and] カテゴリコードがjapan かつgroupA<br />
+例６：[userbox:count permission:ignore]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:newlist　]<br /><br />
+rss_file:<br />
+title_trim_length:<br />
+intervalday:<br />
+limitcnt:<br />
+newmarkday:<br />
+templatedir:<a title="テンプレートディレクトリ"class="note_super" href="#notetext_1">*1</a><br />
+category_id:　category_code:<br />
+permission:ignore アクセス権のないデータも表示します。ただしリンクはしません。コンフィギュレーション設定の新着データのpermission ignore を無効にする(disable_permission_ignore)が「はい」の場合は無効です。<br />
+</td>
+<td>
+新着ユーザ<br />
+例１：[userbox:newlist]<br />
+例２：[userbox:newlist rss_file:userbox.rss title_trim_length:50 intervalday:70 limitcnt:40 newmarkday:30 templatedir:aaa category_id:99 category_code:x]<br />
+</td>
+</tr>
+
+<tr>
+<td>[userbox:profile id]</td>
+<td>
+ユーザプロフィール<br />
+例１：[userbox:profile] <br />
+例２：[userbox:profile uid:1 templatedir:aaa nohitmsg:yes]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:category　カテゴリidまたはカテゴリコード　ほか]</td>
+<td>
+カテゴリ別一覧<br />
+例１：[userbox:category] <br />
+例２：[userbox:category category_id:1 templatedir:aaa nohitmsg:yes perpage:10 page:1 order:id expired:no]<br />
+例３：[userbox:category category_code:japan ]<br />
+例４：[userbox:category category_code:japan|america ] カテゴリコードがjapan またはamerica<br />
+例５：[userbox:category category_code:japan|groupA mode:and] カテゴリコードがjapan かつgroupA<br />
+order に指定できるのは、 random <a title="コンフィギュレーション設定による"class="note_super" href="userbox.html#desc_datefield">date</a> orderno code title description id と　表示制限されていない追加項目のテーマ変数　です <br />date と released は逆順です。<br />
+<br />
+perpage:(Number) 1ページあたりの表示件数。0のときは改ページなし（デフォルト:0）<br />
+expired:no 公開終了日を過ぎたデータは表示しません。（デフォルト）<br />
+expired:yes 公開終了日を過ぎたデータも表示します。<br />
+</td>
+</tr>
+
+<tr>
+<td>[userbox:attributedatacount ]<br /><br />
+templatesetvar:<br />
+value:<br />
+type_id:<br />
+permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
+numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。<br />
+</td>
+<td>
+指定アトリビュートが指定値のデータの件数<br />
+例１：[userbox:attributedatacount] <br />
+例２：[userbox:attributedatacount templatesetvar:pref value:27]<br />
+例３：[userbox:attributedatacount templatesetvar:pref value:27 type_id:0]<br />
+type_id:0 タイプなし　省略時すべてのタイプ
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:lastmodified ]<br /><br />
+category_id: category_code:<br />　
+</td>
+<td>
+最後（直近）に修正されたデータ <br />
+例１：[userbox:lastmodified] <br />
+例２：[userbox:lastmodified category_id:1]<br />
+例３：[userbox:lastmodified category_code:japan]<br />
+</td>
+</tr>
+
+<tr >
+<td>[userbox:lastcreated<br /><br />
+category_id: category_code:<br />
+<td>
+最後（直近）に作成されたデータ<br />
+例１：[userbox:lastcreated] <br />
+例２：[userbox:lastcreated category_id:1]<br />
+例３：[userbox:lastcreated category_code:japan]<br />
+</td>
+</tr>
+
+<tr class="r2">
+<td>[userbox:attribute　テンプレートフォルダ　追加項目値　ほか例２参照]
+</td>
+<td>アトリビュート別一覧<br /> 指定アトリビュートが指定値のデータ一覧<br />
+例１：[userbox:attribute field_id:99 value:xx ]<br />
+例２：[userbox:attribute field_id:99 value:xx templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+例３：[userbox:attribute field_code:pref value:27 templatedir:x nohitmsg:yes perpage:99 page:99 order:id]<br />
+<br />
+perpage:(Number) 1ページあたりの表示件数。0のときは改ページなし（デフォルト:0）<br />
+
+</td>
+</tr>
+<tr >
+<td>[userbox:msg　メッセージ]</td>
+<td>
+<br />
+例１：[userbox:msg ] すべてのユーザ用メッセージを表示<br />
+例２：[userbox:msg for:draftuser] ドラフトユーザ用メッセージを表示<br />
+例３：[userbox:msg for:alluser]  すべてのユーザ用メッセージを表示<br />
+例４：[userbox:msg for:descriptionempty]説明未登録チェックをおこなう場合未登録のユーザ用メッセージを表示<br />
+メッセージの内容は、言語ファイルに記述しています。
+</td>
+</tr>
+<tr class="r2">
+<td>[userbox:categorycount　カテゴリグループid または　カテゴリグループコード]
+<br />permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。
+<br />numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。
+</td>
+<td>指定カテゴリグループのカテゴリ件数<br /> 
+例１：[userbox:categorycount ] 親グループなしカテゴリの件数<br />
+例２：[userbox:categorycount group_id:3]<br />
+例３：[userbox:categorycount group_code:pref]<br />
+アクセス権のあるデータが登録されていないカテゴリの件数は含みません
+</td>
+</tr>
+<tr>
+<td>[databox:attributevalue　アトリビュートテーマ変数またはアトリビュートid データidまたはcode option]
+</td>
+
+<td>指定アトリビュートの表示用値等を返す<br /> 
+例１：[userbox:attributevalue field_code:pref code:Admin ] <br />
+例２：[userbox:attributevalue field_code:pref code:Admin option:value2] <br />
+例３：[userbox:attributevalue field_id:1 id:2 option:value2] <br />
+optionなしは、{登録したテーマ変数名} と同等の内容です。 <br />
+option:name　名称 <br />
+option:description 説明 <br />
+option:yes　{登録したテーマ変数名_yes}と同じ <br />
+option:value2　{登録したテーマ変数名_mst_value2}と同じ <br />
+option:disp　{登録したテーマ変数名_mst_disp}と同じ <br />
+option:no　{登録したテーマ変数名_mst_no} と同じ <br />
+option:datatitle 指定アトリビュートの値をCODEとして引当てたDataBoxデータのタイトル <br />
+option:datadescription 指定アトリビュートの値をCODEとして引当てたDataBoxデータの説明<br />
+<a href="templatesetvars.html#notetext_add">各アトリビュートのテーマ変数</a>参照
+</td>
+</tr>
+<tr class="r2">
+<td>[userbox:math ]<br /><br />
+method:<br />
+templatesetvar:<br />
+type_id:<br />
+category_id: または category_code:<br />
+mode:<br />
+roundprecision:<br />
+numberformat:yes 千単位に区切ります（カンマ編集）。省略時は区切りません。数値の場合のみ有効<br />
+permission:ignore アクセス権のないデータもカウントします。省略時はカウントしません。<br />
+</td>
+<td>
+指定アトリビュートのMAX MIN SUM COUNT AVERAGE<br />
+例１：[userbox:math templatesetvar:number] <br />
+例２：[userbox:math method:min templatesetvar:number ]<br />
+例３：[userbox:math method:min templatesetvar:number type_id:0]<br />
+例４：[userbox:math method:min templatesetvar:number type_id:0 category_code:AAA|BBB|CCC] カテゴリコードがAAA または BBB または CCC<br />
+例５：[userbox:math templatesetvar:number type_id:0 category_code:AAA|BBB|CCC mode:and] カテゴリコードがAAA かつ BBB かつCCC<br />
+method:count max min sum average avg  省略時count<br />
+type_id:0 タイプなし　省略時すべてのタイプ
+<br />roundprecision 丸める桁数  数値の場合のみ有効
+<br />0の場合　3.4　→ 3
+<br />0の場合　3.5　→ 4
+<br />0の場合　3.6　→ 4
+<br />2の場合 1.95583 → 1.96
+<br />2の場合　5.045　→ 5.05
+<br />2の場合　5.055　→ 5.06
+<br />-3の場合 1241757 → 1242000
+<br />丸めの結果はPHPのバージョンに依存します
+<br />指定アトリビュートのタイプが数値または通貨、またはnumberformat:yesが指定された場合は、数値比較になります
+</td>
+</tr></tbody>
+</table>
+<h2>ブロック用関数</h2>
+<table>
+<tr><th style="width:25%">関数名</th>
+    <th style="width:75%">説明</th>
+</tr>
+<tbody>
+<tr>
+  <td>phpblock_shownewuserbox</td>
+  <td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+<br/><a class="note_super" href="#notetext_1" id="notetext_1">*1</a>
+テンプレートディレクトリ<br/>
+ココで指定されていない場合は、下記の順に使用されます(一覧画面以外)<br/>
+タイプに登録されているテンプレートディレクトリ<br/>
+データに登録されているテンプレートディレクトリ<br/>
+default<br/>
+以上なければ、表示されません。（$LANG_404(3)） <br/>
+コンフィギュレーション設定で、テンプレートをカスタムまたはテーマに指定している場合にのみ有効です。
+<div class="footer">
+    <a href="http://wiki.geeklog.net/">Geeklogドキュメント作成プロジェクト</a>、<a href="http://wiki.geeklog.jp/">Geeklogドキュメント日本語版作成プロジェクト</a><br />
+    本ページのすべての商標と著作権はそれぞれの所有者に帰属します。Geeklogはコピーレフトです。
+</div>
+
+</body>
+</html>

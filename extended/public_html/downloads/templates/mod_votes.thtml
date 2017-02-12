@@ -1,0 +1,9 @@
+{# begin {templatelocation} #}
+
+<div class="aligncenter">
+    <div class="block-divider"></div>
+</div>
+{regvotesinfo}
+{unregvotesinfo}
+
+{# end {templatelocation} #}

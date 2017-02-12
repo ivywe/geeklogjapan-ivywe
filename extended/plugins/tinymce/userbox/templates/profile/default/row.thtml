@@ -1,0 +1,3 @@
+{# begin {templatelocation} #}
+<tr>{col_var}</tr>
+{# end {templatelocation} #}

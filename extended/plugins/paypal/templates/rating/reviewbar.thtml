@@ -1,0 +1,8 @@
+<table class="uk-width-1-1 uk-table uk-table-small">
+	<tr>
+		<td>{ratingtotalsinfo}</td>
+	</tr>
+</table>
+
+<p align="center">{lang_disclaimer}</p>
+

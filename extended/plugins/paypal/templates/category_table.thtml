@@ -1,0 +1,4 @@
+{category_heading}
+<table class="categories uk-table uk-table-small">
+{categories}
+</table>
