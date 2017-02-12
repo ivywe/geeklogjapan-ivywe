@@ -434,7 +434,7 @@ class jcart {
 			$cart->set_var('steps', $steps);
 		} else if ($_REQUEST['pay_by'] == 'check' || PAYBYCHECK == true) {
 		    PAYBYCHECK == true;
-			$steps = '<div class="uk-width-1-1 uk-marginuk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
+			$steps = '<div class="uk-width-1-1 uk-margin uk-margin-top"><div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-text-center uk-button-group">
 			        <button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_1'] . '</button>
 							<button class="uk-button uk-button-secondary uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_2'] . '</button>
 							<button class="uk-button uk-button-default uk-margin-small-bottom uk-text-nowrap">' . $LANG_PAYPAL_1['checkout_step_3'] . '</button>
