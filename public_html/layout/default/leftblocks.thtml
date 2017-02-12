@@ -6,11 +6,11 @@
         <h2 class="block-title">{button_search}</h2>
         <div class="block-left-content">
           <form action="{site_url}/search.php" method="get" id="searchform" class="uk-form">
-            <fieldset class="noborder_fieldset">
-              <legend class="hidden_legend">{button_search}</legend>
+            <fieldset class="uk-fieldset noborder_fieldset">
+              <legend class="uk-legend hidden_legend">{button_search}</legend>
               <div class="uk-form-icon">
                 <i class="uk-icon-search" aria-hidden="true"></i>
-                <input type="text" size="15" maxlength="255" value="" name="query" placeholder="{button_search}"{xhtml}>
+                <input type="text" class="uk-input" size="15" maxlength="255" value="" name="query" placeholder="{button_search}"{xhtml}>
                 <input type="hidden" value="all" name="type"{xhtml}>
                 <input type="hidden" value="all" name="keyType"{xhtml}>
                 <input type="hidden" value="search" name="mode"{xhtml}>

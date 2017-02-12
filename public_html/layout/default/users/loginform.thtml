@@ -2,14 +2,14 @@
 
 {start_block_loginagain}
   <form action="{site_url}/users.php" method="post" id="userloginform" class="compact uk-form">
-    <fieldset>
-      <legend>{lang_login}</legend>
+    <fieldset class="uk-fieldset">
+      <legend class="uk-legend">{lang_login}</legend>
 
       <p class="form_message">{lang_message}</p>
 
       <dl class="form_block">
         <dt><label for="users-loginform-loginname">{lang_username}</label></dt>
-        <dd><input type="text" name="loginname" id="users-loginform-loginname" class="size3"{xhtml}></dd>
+        <dd><input type="text" class="uk-input" name="loginname" id="users-loginform-loginname" class="size3"{xhtml}></dd>
 
         {services}
 

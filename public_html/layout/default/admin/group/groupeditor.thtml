@@ -8,7 +8,7 @@
       <dd>{groupname_static}<input type="{groupname_inputtype}" maxlength="50" value="{group_name}" name="grp_name" id="admin-groupeditor-grp_name" class="size3"{xhtml}></dd>
 
       <dt><label for="admin-groupeditor-grp_descr">{lang_description}</label></dt>
-      <dd><input type="text" maxlength="255" value="{group_description}" name="grp_descr" id="admin-groupeditor-grp_descr" class="size5"{xhtml}></dd>
+      <dd><input type="text" class="uk-input" maxlength="255" value="{group_description}" name="grp_descr" id="admin-groupeditor-grp_descr" class="size5"{xhtml}></dd>
 
     </dl>
 
@@ -39,8 +39,8 @@
   </div>
 
   <div class="linear">
-    <fieldset>
-      <legend>{lang_securitygroups}</legend>
+    <fieldset class="uk-fieldset">
+      <legend class="uk-legend">{lang_securitygroups}</legend>
 
       <dl class="form_block">
         <dd class="description">{lang_securitygroupmsg}</dd>
@@ -48,8 +48,8 @@
       </dl>
     </fieldset>
 
-    <fieldset>
-      <legend>{lang_rights}</legend>
+    <fieldset class="uk-fieldset">
+      <legend class="uk-legend">{lang_rights}</legend>
 
       <dl class="form_block">
         <dd class="description">{lang_rightsmsg}</dd>

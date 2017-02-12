@@ -1,13 +1,13 @@
 {# begin {templatelocation} #}
 
 <form action="{site_url}/users.php" method="post" id="loginform" class="uk-form">
-  <fieldset class="noborder_fieldset">
-    <legend class="hidden_legend">{lang_login}</legend>
+  <fieldset class="uk-fieldset noborder_fieldset">
+    <legend class="uk-legend hidden_legend">{lang_login}</legend>
 
     <div class="loginform">
       <div class="form_part">
         <label for="loginform-loginname" style="display:none">{lang_username}</label>
-        <input type="text" value="" name="loginname" id="loginform-loginname" class="size2" placeholder="{lang_username}"{xhtml}>
+        <input type="text" class="uk-input" value="" name="loginname" id="loginform-loginname" class="size2" placeholder="{lang_username}"{xhtml}>
       </div>
 
       {services}

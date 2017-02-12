@@ -42,51 +42,14 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.php') !== false) {
 /**
  * Return the configuration values for the theme
  */
-function theme_config_default()
+function theme_config_denim()
 {
-    $options = array(
-        'uikit_theme' => 'default', // you can set this variable to 'default' or 'gradient' or 'almost-flat'
-        'uikit_components'  => array(
-            'accordion'     => 0,
-            'autocomplete'  => 0,
-            'datepicker'    => 0,
-            'dotnav'        => 0,
-            'form_advanced' => 0,
-            'form_file'     => 0,
-            'form_password' => 0,
-            'form_select'   => 0,
-            'htmleditor'    => 0,
-            'nestable'      => 0,
-            'notify'        => 0,
-            'placeholder'   => 0,
-            'progress'      => 1,
-            'search'        => 0,
-            'slidenav'      => 0,
-            'slider'        => 0,
-            'slideshow'     => 0,
-            'sortable'      => 0,
-            'sticky'        => 0,
-            'tooltip'       => 1,
-            'upload'        => 0,
-        ),
-        'enable_etag'       => 0,   // 1:enable or 0:disable ETag
-        'use_minified_css'  => 0,   // 1:use  or 0:no_use minified css
-        'header_search'     => 1,   // 1:show or 0:hide header searchbox
-        'block_left_search' => 1,   // 1:show or 0:hide left block searchbox
-        'welcome_msg'       => 1,   // 1:show or 0:hide welcome message
-        'trademark_msg'     => 0,   // 1:show or 0:hide trademark message on footer
-        'execution_time'    => 0,   // 1:show or 0:hide execution time on footer
-        'pagenavi_string'   => 1,   // 1:show or 0:hide text string of page navigation
-        'header_brand_type' => 1,   // 1:text or 0:image type of header brand (site name)
-        'off_canvas_mode'   => 2,   // 0:push 1:slide 2:reveal or 3:none mode of UIkit off-canvas animation
-    );
-
     return array(
         'image_type' => 'png',
         'doctype'    => 'xhtml5',
         'etag'       => false, // never set this true. instead use $options['enable_etag'] above.
         'supported_version_theme' => '2.0.0', // support new theme format for the later Geeklog 2.0.0
-        'theme_plugins' => 'default', // Not requred, you can specify compatible theme of template stored with some plugins
+        'theme_plugins' => 'denim', // Not requred, you can specify compatible theme of template stored with some plugins
         'options'    => $options // Not requred, some options of this theme
     );
 }
@@ -94,97 +57,28 @@ function theme_config_default()
 /**
  * Return an array of CSS files to be loaded
  */
-function theme_css_default()
+function theme_css_denim()
 {
     global $_CONF, $LANG_DIRECTION;
 
-    $theme_var = theme_config_default();
+    $direction = ($LANG_DIRECTION == 'rtl') ? '_rtl' : '';
 
-    $direction = ($LANG_DIRECTION === 'rtl') ? '_rtl' : '';
-    $ui_theme = '';
-    if (in_array($theme_var['options']['uikit_theme'], array('gradient', 'almost-flat'))) {
-        $ui_theme = '.' . $theme_var['options']['uikit_theme'];
-    }
-    $min = ($theme_var['options']['use_minified_css'] === 1) ? '.min' : '';
+    return array(
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/uikit.min.css', 'attributes' => array('media' => 'all'), 'priority' => 80),
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slider.min.css', 'attributes' => array('media' => 'all'), 'priority' => 81),
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slideshow.min.css', 'attributes' => array('media' => 'all'), 'priority' => 82),
+        array('file' => '/layout/' . $_CONF['theme'] . '/vendor/uikit/css' . $direction . '/slidenav.min.css', 'attributes' => array('media' => 'all'), 'priority' => 83),
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style.css', 'attributes' => array('media' => 'all'), 'priority' => 100),
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/custom.css', 'attributes' => array('media' => 'all'), 'priority' => 110), 
+        array('file' => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/theme.css', 'attributes' => array('media' => 'all'), 'priority' => 120), 
 
-    // array of css packages
-    $css_packages = array();
-
-    // main package items
-    $css_items = array();
-
-    // add uikit css
-    $css_items[] = array(
-        'name'       => 'uikit',
-        'file'       => '/vendor/uikit/css' . $direction . '/uikit' . $ui_theme . $min . '.css',
-        'attributes' => array('media' => 'all'),
-        'priority'   => 80
     );
-
-    // add some uikit component css
-    if (!empty($theme_var['options']['uikit_components'])) {
-        $uikit_components = array_merge($theme_var['options']['uikit_components']);
-        foreach ($uikit_components as $component => $value) {
-            if ($value !== 1) continue;
-            $componame = str_replace('_', '-', $component);
-            $css_items[] = array(
-                'name'     => 'uk_' . $component,
-                'file'     => '/vendor/uikit/css' . $direction . '/components/' . $componame . $ui_theme . $min . '.css',
-                'priority' => 81
-            );
-        }
-    }
-
-    // add main css of this theme
-    $css_items[] = array(
-        'name'       => 'main', // don't use the name 'theme' to control the priority
-        'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/style' . $ui_theme . $min . '.css',
-        'attributes' => array('media' => 'all'),
-        'priority'   => 90
-    );
-
-    // add custom css of this theme
-    $css_items[] = array(
-        'name'       => 'custom',
-        'file'       => '/layout/' . $_CONF['theme'] . '/css_' . $LANG_DIRECTION . '/custom.css',
-        'attributes' => array('media' => 'all'),
-        'priority'   => 91
-    );
-
-    // register main css package
-    $css_packages[] = array(
-        'name'      => 'main_package',
-        'css_items' => $css_items,
-    );
-
-    // never packed css items
-    $never_packed_items = array();
-
-    $result = array();
-    $result = $never_packed_items;
-    if ($theme_var['options']['enable_etag'] === 1) {
-        foreach($css_packages as $package) {
-            $result[] = array(
-                'name'      => $package['name'],
-                'file'      => '/layout/' . $_CONF['theme'] . '/css/style.css.php?theme='
-                                    . $_CONF['theme'] . '&amp;package=' . $package['name'] . '&amp;dir=' . $LANG_DIRECTION,
-                'css_items' => $package['css_items'],
-                'priority'  => 90
-            );
-        }
-    } else {
-        foreach($css_packages as $package) {
-            $result = array_merge($result, $package['css_items']);
-        }
-    }
-
-    return $result;
 }
 
 /**
  * Return an array of JS libraries to be loaded
  */
-function theme_js_libs_default()
+function theme_js_libs_denim()
 {
     return array(
        array(
@@ -197,18 +91,13 @@ function theme_js_libs_default()
 /**
  * Return an array of JS files to be loaded
  */
-function theme_js_files_default()
+function theme_js_files_denim()
 {
     global $_CONF;
 
-    $theme_var = theme_config_default();
+    $theme_var = theme_config_denim();
 
     $result = array();
-    $result[] = array(
-        'file'     => '/vendor/uikit/js/uikit.js',
-        'footer'   => false, // Not required, default = true
-        'priority' => 100 // Not required, default = 100
-    );
 
     $result[] = array(
         'file'     => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
@@ -216,21 +105,13 @@ function theme_js_files_default()
         'priority' => 100 // Not required, default = 100
     );
 
-    if (!empty($theme_var['options']['uikit_components'])) {
-        $uikit_components = array_merge($theme_var['options']['uikit_components']);
-        foreach ($uikit_components as $component => $value) {
-            if ($value !== 1) continue;
-            $componame = str_replace('_', '-', $component);
-            $result[] = array(
-                'file'     => '/vendor/uikit/js/components/' . $componame . '.js',
-                'footer'   => false,
-                'priority' => 110
-            );
-        }
-    }
-
     $result[] = array(
-        'file'     => '/javascript/uikit_modifier.js',
+        'file'     => '/layout/' . $_CONF['theme'] . '/vendor/uikit/js/uikit.min.js',
+        'footer'   => false, // Not required, default = true
+        'priority' => 110 // Not required, default = 100
+    );
+    $result[] = array(
+        'file'     => '/layout/' . $_CONF['theme'] .'/vendor/uikit/js/migrate.min.js',
         'footer'   => false, // Not required, default = true
         'priority' => 120 // Not required, default = 100
     );
@@ -241,7 +122,7 @@ function theme_js_files_default()
 /**
  * Do any other initialisation here
  */
-function theme_init_default()
+function theme_init_denim()
 {
     global $_BLOCK_TEMPLATE, $_CONF;
 

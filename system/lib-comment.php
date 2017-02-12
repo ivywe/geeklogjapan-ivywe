@@ -185,16 +185,16 @@ function CMT_commentBar($sid, $title, $type, $order, $mode, $ccode = 0)
     }
 
     // Order
-    $selector = '<select name="order">' . LB
+    $selector = '<select class="uk-select" name="order">' . LB
         . COM_optionList($_TABLES['sortcodes'], 'code,name', $order)
         . LB . '</select>';
     $commentBar->set_var('order_selector', $selector);
 
     // Mode
     if ($is_comment_page) {
-        $selector = '<select name="format">';
+        $selector = '<select class="uk-select" name="format">';
     } else {
-        $selector = '<select name="mode">';
+        $selector = '<select class="uk-select" name="mode">';
     }
     $selector .= LB
         . COM_optionList($_TABLES['commentmodes'], 'mode,name', $mode)

@@ -1,7 +1,7 @@
 {# start {templatelocation} #}
 
-<fieldset>
-  <legend>{lang_exclude_title}</legend>
+<fieldset class="uk-fieldset">
+  <legend class="uk-legend">{lang_exclude_title}</legend>
 
   <div class="linear">
     <div class="profile_notes uk-panel uk-panel-box">

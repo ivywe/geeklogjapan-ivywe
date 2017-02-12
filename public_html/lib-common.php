@@ -1572,7 +1572,7 @@ function COM_createHTMLDocument(&$content = '', $information = array())
     if (XHTML == '') {
         $header->set_var('xmlns', '');
     } else {
-        $header->set_var('xmlns', ' xmlns="http://www.w3.org/1999/xhtml" xml:lang="' . $langId . '"');
+        $header->set_var('xmlns', ' xmlns="http://www.w3.org/1999/xhtml"');
     }
 
     $feed_url = array();
@@ -2964,7 +2964,7 @@ function COM_userMenu($help = '', $title = '', $position = '')
                         . $modules[0] . '"' . XHTML . '>' . $modules[0];
                 } else {
                     // Build select
-                    $select = '<select name="service" id="service">';
+                    $select = '<select class="uk-select"name="service" id="service">';
                     if ($_CONF['user_login_method']['standard']) {
                         $select .= '<option value="">' . $_CONF['site_name']
                             . '</option>';
@@ -5901,7 +5901,7 @@ function COM_getAmPmFormSelection($name, $selected = '')
             $selected = date('a');
         }
 
-        $retval .= '<select name="' . $name . '">' . LB;
+        $retval .= '<select class="uk-select"name="' . $name . '">' . LB;
         $retval .= '<option value="am"';
         if ($selected === 'am') {
             $retval .= ' selected="selected"';
@@ -7344,7 +7344,7 @@ function phpblock_switch_language()
         $retval .= '<input type="hidden" name="oldlang" value="' . $langId
             . '"' . XHTML . '>' . LB;
 
-        $retval .= '<select onchange="change.submit()" name="lang">';
+        $retval .= '<select class="uk-select"onchange="change.submit()" name="lang">';
         foreach ($_CONF['languages'] as $key => $value) {
             if ($lang == $_CONF['language_files'][$key]) {
                 $selected = ' selected="selected"';
@@ -8306,7 +8306,7 @@ function COM_checkInstalled()
         $version = VERSION;
         $display = <<<HTML
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
   <title>Welcome to Geeklog</title>
   <meta name="robots" content="noindex,nofollow" />
