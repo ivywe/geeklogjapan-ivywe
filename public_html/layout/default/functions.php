@@ -42,14 +42,14 @@ if (strpos(strtolower($_SERVER['PHP_SELF']), 'functions.php') !== false) {
 /**
  * Return the configuration values for the theme
  */
-function theme_config_denim()
+function theme_config_default()
 {
     return array(
         'image_type' => 'png',
         'doctype'    => 'xhtml5',
         'etag'       => false, // never set this true. instead use $options['enable_etag'] above.
         'supported_version_theme' => '2.0.0', // support new theme format for the later Geeklog 2.0.0
-        'theme_plugins' => 'denim', // Not requred, you can specify compatible theme of template stored with some plugins
+        'theme_plugins' => 'default', // Not requred, you can specify compatible theme of template stored with some plugins
         'options'    => $options // Not requred, some options of this theme
     );
 }
@@ -57,7 +57,7 @@ function theme_config_denim()
 /**
  * Return an array of CSS files to be loaded
  */
-function theme_css_denim()
+function theme_css_default()
 {
     global $_CONF, $LANG_DIRECTION;
 
@@ -78,7 +78,7 @@ function theme_css_denim()
 /**
  * Return an array of JS libraries to be loaded
  */
-function theme_js_libs_denim()
+function theme_js_libs_default()
 {
     return array(
        array(
@@ -91,23 +91,23 @@ function theme_js_libs_denim()
 /**
  * Return an array of JS files to be loaded
  */
-function theme_js_files_denim()
+function theme_js_files_default()
 {
     global $_CONF;
 
-    $theme_var = theme_config_denim();
+    $theme_var = theme_config_default();
 
     $result = array();
 
-    $result[] = array(
-        'file'     => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
-        'footer'   => true, // Not required, default = true
-        'priority' => 100 // Not required, default = 100
-    );
 
     $result[] = array(
         'file'     => '/layout/' . $_CONF['theme'] . '/vendor/uikit/js/uikit.min.js',
         'footer'   => false, // Not required, default = true
+        'priority' => 100 // Not required, default = 100
+    );
+    $result[] = array(
+        'file'     => '/layout/' . $_CONF['theme'] . '/javascript/script.js',
+        'footer'   => true, // Not required, default = true
         'priority' => 110 // Not required, default = 100
     );
     $result[] = array(
@@ -122,7 +122,7 @@ function theme_js_files_denim()
 /**
  * Do any other initialisation here
  */
-function theme_init_denim()
+function theme_init_default()
 {
     global $_BLOCK_TEMPLATE, $_CONF;
 
