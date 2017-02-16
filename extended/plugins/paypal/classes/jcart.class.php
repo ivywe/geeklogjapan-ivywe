@@ -520,11 +520,7 @@ class jcart {
 		
 		// IF THIS IS THE CHECKOUT HIDE THE CART CHECKOUT BUTTON
 		if ($is_checkout !== true && $_REQUEST['pay_by'] != 'check') {
-			if ($button['checkout']) {
-    			$input_type = 'image';
-				$src = ' src="' . $button['checkout'] . '" alt="' . $text['checkout_button'] . '" title="" ';
-			}
-			$cart->set_var('checkout', '<button type="' . $input_type . '" ' . $src . 'id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-primary uk-button-large uk-text-right" value="' . $text['checkout_button']
+			$cart->set_var('checkout', '<button type="submit" id="jcart-checkout" name="jcart_checkout" class="uk-button uk-button-primary uk-button-large uk-text-right" value="PayPal決済１' . $text['checkout_button']
  . '">' . $text['checkout_button'] . ' &#62;&#62;</button>');
 		} else {
 		    $cart->set_var('checkout', '');
@@ -616,8 +612,8 @@ class jcart {
 
             // PAYPAL CHECKOUT BUTTON
 			if ($button['paypal_checkout'])	{ 
-                $input_type = 'image';
-                $src = ' src="' . $button['paypal_checkout'] . '" alt="' . $text['checkout_paypal_button'] . '" title="" '; 
+                $input_type = 'submit';
+                $src = '" alt="' . $text['checkout_paypal_button'] . '" title="" '; 
             }
 			if ($_REQUEST['pay_by'] != 'check') {
 
@@ -635,12 +631,12 @@ class jcart {
 							$retval .= '<input type="hidden" name="pay_by" />';
 							$retval .= '<a class="uk-button uk-button-primary" href="javascript:payby(\'check\')">' . $LANG_PAYPAL_CART['payment_check'] . ' <span uk-icon="icon: arrow-right"></span></a>';
 					} else {
-							$retval .= '<a href="https://ivywe.co.jp/bioclean/users.php" class="uk-button uk-button-default">銀行振り込みによる購入は先にログインしてください。</a>';
+							$retval .= '<a href="/users.php" class="uk-button uk-button-default">銀行振り込みによる購入は先にログインしてください。</a>';
 					}
 				}
 				if ($_PAY_CONF['enable_pay_by_paypal']) {
-					$retval .= '<input class="jcart_footer uk-button uk-button-danger" type="' . $input_type . "' " . $src ."id='jcart-paypal-checkout' name='jcart_paypal_checkout' value='" .
-						$text['checkout_paypal_button'] . "'" . $disable_paypal_checkout . ' style="border-radius:500px" />';	
+					$retval .= '<button class="uk-button uk-button-danger" type="submit" id="jcart-paypal-checkout" name="jcart_paypal_checkout" value="' .
+						$text['checkout_paypal_button'] . '"' . $disable_paypal_checkout . ' style="border-radius:500px" />' . $text['checkout_paypal_button'] . '</button>';	
 				}
 
 

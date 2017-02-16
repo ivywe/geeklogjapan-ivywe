@@ -263,7 +263,7 @@ $LANG_PAYPAL_1 = array(
 	'confirm_order_button'    => '注文する',
 	'confirm_order_check'     => '以下の項目を入力して「注文する」をクリックすればご請求のメールが送付されます。',
 	'review_details'          => '送付先（請求先）情報を入力してください',
-	'order_received'          => 'ご購入ありがとうございます。メールを送信しました。', // ご注文が確定しました。
+	'order_received'          => '購入お申込みありがとうございます。メールを送信しました。', 
 	'confirm_by_email'        => 'メールでのお振込連絡により注文が確定します。メールが届かない場合、再度お手続きいただくか、お電話にてご連絡ください。', // 
 	'autotag_desc_paypal'     => '<p>[paypal: id alternate title] - 商品名へのタイトルリンクが表示されます。ページタイトルは必須ではありません。</p>',
 	'autotag_desc_paypal_product' => '<p>[paypal_product:  id] - 商品の画像、タイトル、短い紹介文を表示します。「今すぐ購入する」と「購入する」ボタン</p>',
@@ -415,7 +415,7 @@ $LANG_PAYPAL_EMAIL = array(
     'download_files'              => '注文品がファイルなら (プログラム、画像、PDF…)、ダウンロードリンクがカートに追加するボタンか今すぐ購入ボタンのかわりに表示されます。',
 	'order_confirmation'          => 'ご注文ありがとうございます。',
 	'thank_you_order'             => 'ご注文内容:',
-	'send_check'                  => 'ご不明なことなどありましたら以下までお問い合わせください。', // 注文を確定するには、以下のメールアドレスに支払い完了連絡を送信してください。
+	'send_check'                  => 'お振込後、メールまたはお電話にて、支払い完了をご連絡ください。入金を確認後、2営業日以内に発送させていただきます。', 
 );
 
 $LANG_PAYPAL_PRO = array (

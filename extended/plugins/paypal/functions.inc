@@ -607,7 +607,7 @@ function paypal_user_menu() {
     } else {
 	    $menu->set_var('admin', '');
 	}
-    $display .= '<ul><li>' . $menu->parse('output', 'menu') . '</li></ul>';
+    $display .= $menu->parse('output', 'menu');
 
     // return results
     return $display;
@@ -2790,6 +2790,9 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			if ($_PAY_CONF['shop_phone2'] != '') $shop_informations_bottom .= '<dt>' . $LANG_confignames['paypal']['shop_phone2'] . '</dt>' . $_PAY_CONF['shop_phone2'] . '<br' . XHTML . '>';
 			if ($_PAY_CONF['shop_fax'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_fax'].'</dt><dd>' .  $_PAY_CONF['shop_fax'] . '<br' . XHTML . '>';
 			if ($_PAY_CONF['shop_siret'] != '') $shop_informations_bottom .= '<dt>'.$LANG_confignames['paypal']['shop_siret'] .'</dt><dd>' . $_PAY_CONF['shop_siret'] . '</dd>';
+
+			$shop_informations_bottom .= '<dt>振込先</dt><dd>' . PLG_replaceTags('[staticpage_content:bank]') . '</dd>';
+
 			$shop_informations_bottom .= '</dl>';
 									
 			$order_date = COM_getUserDateTimeFormat($ipn['order_date']);

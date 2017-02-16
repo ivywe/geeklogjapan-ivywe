@@ -1,11 +1,40 @@
-<p>{address_name},</p>
-<p>{thank_you}</p>
-{products}
-<p></p>
-<p>{send_check}</p>
-{shop_informations}
-<p></p>
-<p>{thanks}<p>
-<p>{site_name}<br{xhtml}>
-{site_url}</p>
-<p>{order_date}</p>
+<br>
+<br>
+{address_name} 様<br>
+<br>
+ご購入お申込みありがとうございます。<br>
+<br>
+お申込み日時: {order_date}<br>
+商品明細：<br>
+{products}<br>
+<br>
+{send_check}<br>
+<br>
+＜お振込先＞<br>
+●三菱東京UFJ銀行(0005)　渋谷支店(135)　普通　0172345<br>
+株式会社アイビー・ウィー<br>
+カ）アイビーウィー<br>
+<br>
+●ゆうちょ銀行 10130-89390111 <br>
+店名　０一八（ゼロイチハチ） 店番 018 普通 8939011<br>
+株式会社アイビー・ウィー<br>
+カ）アイビーウィー<br>
+<br>
+＜お振込後の連絡先＞<br>
+E-mail: info@ivywe.co.jp<br>
+TEL: 050-3719-1231<br>
+<br>
+＜購入履歴＞<br>
+https://ivywe.co.jp/bioclean/paypal/purchase_history.php<br>
+<br>
+{thanks}<br>
+<br>
+※ お住まいの自治体に、生ごみ処理機の助成金についてお問い合わせください。<br>
+ご連絡いただきましたら、領収書をお送りします。<br>
+<br>
+---<br>
+{site_name}<br>
+株式会社アイビー・ウィー<br>
+{site_url}<br>
+
+
