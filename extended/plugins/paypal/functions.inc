@@ -1209,7 +1209,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 					'name_button' => $A['name'])
 					);
 			}
-			$product->set_var('link_name', '<a class="product-details" href=" class="uk-link-reset" ' . $_PAY_CONF['site_url'] . '/product_detail.php?product=' . $A['id'] . '&amp;n='. urlencode($A['name']) . '">' . $A['name'] . '</a>');
+			$product->set_var('link_name', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?product=' . $A['id'] . '&amp;n='. urlencode($A['name']) . '">' . $A['name'] . '</a>');
 			if (($A['hidden'] == 1) && SEC_hasRights('paypal.admin')) {
 			  $product->set_var('hidden','<strong><font color="red">' . $LANG_PAYPAL_1['hidden'] . '</font></strong><br/>');
 			} else {
@@ -1538,8 +1538,8 @@ function phpblock_paypal_randomBlock()
 	if ($A['pi_filename'] == '') {
 		$T->set_var('small_pic', '');
 	} else {
-		$T->set_var('small_pic', '<a class="product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="ivy4 lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url']
-		. $A['pi_filename'] . '&amp;w='. $_PAY_CONF['max_thumbnail_size'] . '&amp;zc=1&amp;q=100" alt="' . $A['name'] . '" /></a>');
+		$T->set_var('small_pic', '<a class="gl-small_pic product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="ivy4 lightbox" src="'. $_PAY_CONF['images_url']
+		. $A['pi_filename'] . '" alt="' . $A['name'] . '" style="max-height:'. $_PAY_CONF['max_thumbnail_size'] .'" /></a>');
 	}
 
 	$T->set_var('site_url', $_PAY_CONF['site_url']);
@@ -2687,7 +2687,7 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			}
 		}
 
-		$namelist[] = $ipn['quantity'.$i] . ' x ' . $ipn['item_name'.$i] . '</li><li>' .  number_format(($ipn['mc_gross_'.$i]/$ipn['quantity'.$i]), $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'];
+		$namelist[] =  $ipn['item_name'.$i] . ' x ' .$ipn['quantity'.$i] . ' = '  . number_format(($ipn['mc_gross_'.$i]/$ipn['quantity'.$i]), $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '<br>';
 		
 		// stock movement
 		$stock_id = PAYPAL_getStockId($ipn['item_number'.$i]);
@@ -2767,8 +2767,9 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 			$message->set_var('address_name', $ipn['address_name']);
 
 			// list of product names
-			for ($i2 = 1; $i2 < count($products) +1; $i2++) {
-				$products_list .= '<p>' . $namelist[$i2] . '</p>';
+// komma			for ($i2 = 1; $i2 < count($products) +1; $i2++) {
+			for ($i2 = 0; $i2 < count($products) +1; $i2++) {
+				$products_list .= $namelist[$i2];
 			}
 			if ($ipn['mc_handling'] > 0) {
 				$products_list .= '<p>' . $LANG_PAYPAL_1['shipping'] . ' ' . number_format($ipn['mc_handling'], $_CONF['decimal_count'], $_CONF['decimal_separator'], $_CONF['thousand_separator']) . ' ' . $_PAY_CONF['currency'] . '</p>';
@@ -2818,10 +2819,10 @@ function PAYPAL_handlePurchase( $products, $quantity, $data, $names, $prices, $r
 
 		if ($return == 1) {
 			$retval .= '<h2>'. $LANG_PAYPAL_1['order_received'] . '</h2>';
-			$retval .= '<p>' . $LANG_PAYPAL_EMAIL['thank_you_order'] . '</p>';
-			$retval .= '<div class="uk-margin-left">' . $products_list . '</div>';
+			$retval .= '<p class="thank_you_order">' . $LANG_PAYPAL_EMAIL['thank_you_order'] . '</p>';
+			$retval .= '<div class="uk-margin-left products_list">' . $products_list . '</div>';
 			$retval .= '<p>' . $LANG_PAYPAL_EMAIL['send_check'] . '</p>';
-			$retval .= '<div class="uk-margin-left">' . $shop_informations . $shop_informations_bottom . '</div>';
+			$retval .= '<div class="uk-margin-left shop_informations">' . $shop_informations . $shop_informations_bottom . '</div>';
 			$retval .= '<p>' . $LANG_PAYPAL_1['confirm_by_email'] . '</p>';
 			
 			return $retval;

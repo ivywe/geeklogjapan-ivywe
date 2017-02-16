@@ -704,7 +704,7 @@ if (SEC_hasRights('paypal.user', 'paypal.admin')) {
 
 $breadcrumbs = PAYPAL_Breadcrumbs($A['cat_id']);
 if ($breadcrumbs != '') {
-				   $display .= '<p><small>' . $breadcrumbs . '</small></p>';
+				   $display .= '<p class="uk-text-small">' . $breadcrumbs . '</p>';
 				}
 
 $product = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
@@ -715,6 +715,7 @@ $product->set_file(array('product' => 'product_detail.thtml',
 						 ));
 $product->set_var('site_url', $_CONF['site_url']);
 $product->set_var('paypal_folder', $_PAY_CONF['site_url']);
+
 
 //Edit link
 if (SEC_hasRights('paypal.admin')) {
@@ -794,7 +795,7 @@ if ($A['discount_a'] != '' && $A['discount_a'] != 0) {
 if ($A['shipping_type'] == 0) {
 	$product->set_var('item_weight', '0.00');
 	if ($A['product_type'] == 0 && $A['type'] == 'product') {
-	    $product->set_var('free_shipping', '<small><font style="color:red">' . $LANG_PAYPAL_CART['free_shipping'] . '</font></small>');
+	    $product->set_var('free_shipping', $LANG_PAYPAL_CART['free_shipping'] );
 	} else {
 	    $product->set_var('free_shipping', '');
 	}
@@ -811,7 +812,7 @@ if ($icount > 0) {
 	for ($z = 1; $z <= $icount; $z++) {
 		$I = DB_fetchArray($result_products);
 
-		$saved_images .= '<li><a href="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" data-uk-lightbox><img src="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" style="width:120px" /></a></li>';
+		$saved_images .= '<li><a href="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" data-uk-lightbox><img src="' . $_PAY_CONF['images_url'] . $I['pi_filename'] . '"' . $A['name'] . '" style="max-width:200px" /></a></li>';
 
 	}
 }
