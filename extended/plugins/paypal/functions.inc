@@ -853,7 +853,7 @@ function paypal_genButton($type, $vars) {
 
     $button->set_var('id', $vars['id']);
 	if ($_PAY_CONF['display_item_id'] == 1 && $vars['item_id'] != '' ) {
-        $button->set_var('name', $vars['name'] . '</li><li>' . $vars['item_id']);
+        $button->set_var('name', $vars['name'] . ' : ' . $vars['item_id']);
 	} else {
 	     $button->set_var('name', $vars['name']);
 	}
@@ -1042,12 +1042,13 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			
 			$breadcrumbs = PAYPAL_Breadcrumbs($category);
 			
+/*
 			if ($breadcrumbs != '') {
 				    $retval .= '&nbsp;' . $breadcrumbs . '';
 				} else {
 				    $retval .= '&nbsp;' . $LANG_PAYPAL_1['home'] . '';
 				}
-
+*/
             if ($nrows > 0) {
 				$cat = COM_newTemplate($_CONF['path'] . 'plugins/paypal/templates');
 				$cat->set_file(array('table'    => 'category_table.thtml'));
@@ -1065,10 +1066,8 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 							if (file_exists($cat_image) && $C['image'] != '') {
 								$cat->set_var('cat_image','<p><a href="' . $_PAY_CONF['site_url'] . '/index.php?n=' 
 								. urlencode($C['cat_name']) . '&amp;category='. $C['cat_id'] 
-								. '"><img src="' . $_PAY_CONF['site_url'] . '/timthumb.php?src='
-								. $_PAY_CONF['images_cat_url'] . $C['image'] . '&amp;w=' . $imgwidth 
-								. '&amp;q=70&amp;zc=1" class="cat_image" title="' . $C['cat_name'] . '" alt="' 
-								. $C['cat_name'] . '" /></a></p>');
+								. '"><img src="' . $_PAY_CONF['images_cat_url'] . $C['image'] . '" class="cat_image" title="' . $C['cat_name'] . '" alt="' 
+								. $C['cat_name'] . '" style="max-height:140px" /></a></p>');
 							} else {
 								$cat->set_var('cat_image', '');
 							}
@@ -1200,7 +1199,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			$product->set_var('id', $A['id']);
 			if ($_PAY_CONF['display_item_id'] == 1 && $A['customisable'] == 0 && $A['item_id'] != '') {
 				$product->set_var(array (
-					'name_button' => $A['name'] . '</li><li>' . $A['item_id'],
+					'name_button' => $A['name'] . ' : ' . $A['item_id'],
 					'name' => $A['name'])
 					);
 			} else {
@@ -1217,7 +1216,6 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			}
 			$product->set_var('short_description', PLG_replacetags($A['short_description']));
 			if ($A['item_id'] != '' && $_PAY_CONF['display_item_id'] == 1) {
-				$product->set_var('item_id', '<p class="product-item-id">' . $A['item_id'] . '</p>');
 			} else {
 				$product->set_var('item_id', '');
 			}
@@ -1461,7 +1459,7 @@ function plugin_dopluginsearch_paypal($query, $datestart, $dateend, $topic, $typ
             if ($row['pi_filename'] == '') {
                 $image = '';
             } else {
-                $image = ' <a class="ivy2 lightbox" href="' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '"><img class="ivy3 lightbox" src="'. $_PAY_CONF['site_url'] . '/timthumb.php?src=' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '&amp;h=55&amp;zc=1&amp;q=100" alt="' . $row['title'] . '" align="top" style="margin-top:3px;"/></a>';
+                $image = ' <a class="ivy2 lightbox" href="' . $_PAY_CONF['images_url'] . $row['pi_filename'] . '"><img class="ivy3 lightbox" src="'. $_PAY_CONF['images_url'] . $row['pi_filename'] . '" alt="' . $row['title'] . '" /></a>';
             }
 			$formattedResults[] = array(LF_SOURCE_NAME=>'paypal',
                                 LF_SOURCE_TITLE=>$LANG_paypal_1['products'],
@@ -1539,7 +1537,7 @@ function phpblock_paypal_randomBlock()
 		$T->set_var('small_pic', '');
 	} else {
 		$T->set_var('small_pic', '<a class="gl-small_pic product-details" href="' . $_PAY_CONF['site_url'] . '/product_detail.php?n=' . urlencode($A['name']) . '&amp;product='. $A['id'] . '"><img class="ivy4 lightbox" src="'. $_PAY_CONF['images_url']
-		. $A['pi_filename'] . '" alt="' . $A['name'] . '" style="max-height:'. $_PAY_CONF['max_thumbnail_size'] .'" /></a>');
+		. $A['pi_filename'] . '" alt="' . $A['name'] . '" /></a>');
 	}
 
 	$T->set_var('site_url', $_PAY_CONF['site_url']);
