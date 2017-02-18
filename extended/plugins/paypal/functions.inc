@@ -1216,6 +1216,7 @@ function PAYPAL_displayProducts ($pid = '', $autotag=0, $category = '', $column 
 			}
 			$product->set_var('short_description', PLG_replacetags($A['short_description']));
 			if ($A['item_id'] != '' && $_PAY_CONF['display_item_id'] == 1) {
+				$product->set_var('item_id', $A['item_id'] ); 
 			} else {
 				$product->set_var('item_id', '');
 			}
